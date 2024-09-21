@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rock-paper-scissors</title>
+    <style>
+        body{
+            background-color: rgb(86, 65, 65);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        h1{
+            text-align: center;
+            color: black;
+        }
+        img{
+            width: 250px;
+            height: 250px;
+            border-radius: 5px;
+        }
+        div{
+            display: flex;
+            justify-content: center;
+            border-radius: 10px;
+        }
+        button{
+            background-color: black;
+            margin:10px;
+            border-radius: 10px;
+            box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+        }
+        p{
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: rgb(30, 29, 29);
+        }
+        @media (max-width:600px){
+            div{
+                display: flex;
+                flex-direction: row;
+            }
+            img{
+                width: 60px;
+                height: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Rock Paper Scissors</h1>
+      <div>
+        <button id="rock"> <img src="rock.jpeg" alt="1">.</button>
+        <button id="paper"> <img src="paper.jpeg" alt="2">.</button>
+        <button id="scissors"><img src="Scissors.jpeg" alt="3">.</button>
+      </div>
+      <br>
+      <p id="computer"> </p>
+      <p id="you"></p>
+      <p id="result"></p>
+      <script>
+ const choices = ["rock", "paper", "scissors"];
+
+document.getElementById("rock").addEventListener("click", () => playGame("rock"));
+document.getElementById("paper").addEventListener("click", () => playGame("paper"));
+document.getElementById("scissors").addEventListener("click", () => playGame("scissors"));
+
+function playGame(playerChoice) {
+    const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+    document.getElementById("computer").textContent = `Computer: ${computerChoice}`;
+    document.getElementById("you").textContent = `You: ${playerChoice}`;
+
+    const result = getWinner(playerChoice, computerChoice);
+    document.getElementById("result").textContent = result;
+}
+
+function getWinner(player, computer) {
+    if (player === computer) {
+        return "tie mava ;)";
+    } else if (
+        (player === "rock" && computer === "scissors") ||
+        (player === "paper" && computer === "rock") ||
+        (player === "scissors" && computer === "paper")
+    ) {
+        return " winner, enjoy pandugoo :)";
+    } else {
+        return " computer win, don't worry :(";
+    }
+}
+      </script>
+</body>
+</html>
